@@ -15,11 +15,13 @@
         "prettier": "prettier '**/*.{ts,tsx}' --check",
         "prettier:fix": "npm run prettier -- --write",
         "tsc": "tsc",
-        "tsc:watch": "tsc --watch"
+        "tsc:watch": "tsc --watch",
+        "pre-commit": "tsc --noEmit && lint-staged"
     },
     "dependencies": {
         "@react-navigation/native": "^6.1.9",
         "@react-navigation/native-stack": "^6.9.17",
+        "@tanstack/react-query": "^5.17.19",
         "@types/react": "^18.2.48",
         "expo": "~49.0.15",
         "expo-status-bar": "~1.6.0",
@@ -35,7 +37,20 @@
         "eslint-config-prettier": "^9.1.0",
         "eslint-config-universe": "^12.0.0",
         "eslint-plugin-rulesdir": "^0.2.2",
+        "husky": "^7.0.4",
+        "lint-staged": "^12.3.4",
         "prettier": "^3.2.4"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "lint-staged"
+        }
+    },
+    "lint-staged": {
+        "./**/*.{ts,tsx}": [
+            "eslint --fix",
+            "prettier --write"
+        ]
     },
     "private": true
 }
