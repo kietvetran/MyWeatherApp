@@ -34,6 +34,7 @@ interface Props {
     semibold?: boolean;
     bold?: boolean;
     size?: SIZE;
+    testID?: string;
 }
 
 export default function TextView({ children, style, semibold, bold, allowFontScaling = true, size = FONT_SIZE.REGULAR, ...rest }: Props) {

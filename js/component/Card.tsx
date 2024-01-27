@@ -10,8 +10,12 @@ interface Props {
 export default function Card({ textList, onPress }: Props) {
     return (
         <TouchableOpacity style={styles.root} onPress={onPress}>
-            {textList.map((text: string) => {
-                return <TextView key={text}>{text}</TextView>;
+            {textList.map((text: string, i: number) => {
+                return (
+                    <TextView testID={`text${i}`} key={text}>
+                        {text}
+                    </TextView>
+                );
             })}
         </TouchableOpacity>
     );
