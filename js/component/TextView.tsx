@@ -1,7 +1,7 @@
 import { FONT } from 'js/style';
 import { StyleProp, TextStyle, StyleSheet, View, Text } from 'react-native';
 
-export type SIZE = 'ESMALL' | 'SMALL' | 'REGULAR' | 'MEDIUM' | 'LARGE' | 'LARGEST';
+export type SIZE = 'ESMALL' | 'SMALL' | 'REGULAR' | 'MEDIUM' | 'LARGE' | 'LARGEST' | 'XLARGEST';
 
 export enum FONT_SIZE {
     ESMALL = 'ESMALL',
@@ -10,6 +10,7 @@ export enum FONT_SIZE {
     MEDIUM = 'MEDIUM',
     LARGE = 'LARGE',
     LARGEST = 'LARGEST',
+    XLARGEST = 'XLARGEST',
 }
 
 const FONT_SIZE_OPTION: { [k: string]: { fontSize: number } } = {
@@ -19,6 +20,7 @@ const FONT_SIZE_OPTION: { [k: string]: { fontSize: number } } = {
     MEDIUM: { fontSize: FONT.SIZE_MEDIUM },
     LARGE: { fontSize: FONT.SIZE_LARGE },
     LARGEST: { fontSize: FONT.SIZE_LARGEST },
+    XLARGEST: { fontSize: FONT.SIZE_XLARGEST },
 };
 
 interface Props {

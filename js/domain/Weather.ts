@@ -1,10 +1,5 @@
 export const API_KEY = 'b00f8cfc6b2673a447f9c3a2122a20b8';
 
-export interface WeatherParam {
-    lat: number;
-    lon: number;
-}
-
 export interface WindwData {
     deg: number;
     gust: number;
@@ -25,10 +20,19 @@ export interface MainData {
     humidity: number;
 }
 
+export interface SysData {
+    country: string;
+    id: number;
+    sunrise: number;
+    sunset: number;
+    type: number;
+}
+
 export interface WeatherResponseData {
     name: string;
     weather: WeatherData[];
     main: MainData;
     visibility: number;
     wind: WindwData;
+    sys: SysData;
 }

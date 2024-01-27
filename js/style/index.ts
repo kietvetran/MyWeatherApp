@@ -17,6 +17,7 @@ export const FONT = {
     SIZE_MEDIUM: 22,
     SIZE_LARGE: 28,
     SIZE_LARGEST: 34,
+    SIZE_XLARGEST: 60,
 };
 
 export const SPACE = {

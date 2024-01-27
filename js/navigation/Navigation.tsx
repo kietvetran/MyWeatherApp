@@ -25,7 +25,7 @@ export default function Navigation() {
     return (
         <NavigationContainer>
             <Stack.Navigator>
-                <Stack.Screen name="HomeScreen" component={HomeScreen} options={{ ...MyStackOption, title: 'Home' }} />
+                <Stack.Screen name="HomeScreen" component={HomeScreen} options={{ ...MyStackOption, title: '' }} />
                 <Stack.Screen name="LocationScreen" component={LocationScreen} options={({ route }) => ({ ...MyStackOption, ...route.params })} />
             </Stack.Navigator>
         </NavigationContainer>

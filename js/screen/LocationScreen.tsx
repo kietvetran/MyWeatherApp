@@ -1,22 +1,110 @@
+import { RouteProp, ParamListBase } from '@react-navigation/native';
 import ScreenContent from 'js/component/ScreenContent';
+import TextView, { FONT_SIZE } from 'js/component/TextView';
 import useFetchWeather from 'js/hook/useFetchWeather';
-import { StyleSheet, View, Text } from 'react-native';
+import { SPACE, COLOR } from 'js/style';
+import capitalize from 'js/util/capitalize';
+import convertWeatherSunTime from 'js/util/convertWeatherSunTime';
+import convertWeatherTempKelvin from 'js/util/convertWeatherTempKelvin';
+import { StyleSheet, View } from 'react-native';
 
-export default function LocationScreen() {
-    // eslint-disable-next-line
-    const {isLoading, data } = useFetchWeather({lat: 59.91273, lon: 10.74609});
+interface Props {
+    route: RouteProp<ParamListBase, string>;
+}
+
+export default function LocationScreen({ route }: Props) {
+    const { city } = route.params;
+    const { isLoading, isError, data } = useFetchWeather(city);
 
     return (
         <ScreenContent>
-            <View style={styles.root}>
-                <Text>Location screen</Text>
-            </View>
+            <>
+                {!!isLoading && <TextView>Loading...</TextView>}
+                {!isLoading && !!isError && <TextView>Something went wrong...</TextView>}
+                {!isLoading && !isError && !!data && (
+                    <>
+                        <View style={styles.paragraph}>
+                            <TextView style={[styles.center, { paddingBottom: SPACE.EXTRA_SMALL }]}>
+                                {capitalize(data.weather[0].description)}
+                            </TextView>
+                            <TextView semibold size={FONT_SIZE.XLARGEST} style={styles.center}>
+                                {`${convertWeatherTempKelvin(data.main.temp)}`}
+                            </TextView>
+                            <View style={styles.center}>
+                                <TextView
+                                    style={[styles.center, styles.horizontalSpace]}>{`H: ${convertWeatherTempKelvin(data.main.temp_max)}`}</TextView>
+                                <TextView
+                                    style={[styles.center, styles.horizontalSpace]}>{`L: ${convertWeatherTempKelvin(data.main.temp_min)}`}</TextView>
+                            </View>
+                        </View>
+                        <View style={styles.paragraph}>
+                            <View style={[styles.center, styles.bordeBottom]}>
+                                <View style={[styles.center, styles.halfCell, styles.borderLeft]}>
+                                    <View style={styles.column}>
+                                        <TextView style={[styles.center, styles.horizontalSpace]}>Wind</TextView>
+                                        <TextView bold style={[styles.center, styles.horizontalSpace]}>{`${data.wind.speed} m/s`}</TextView>
+                                    </View>
+                                </View>
+                                <View style={[styles.center, styles.halfCell]}>
+                                    <View style={styles.column}>
+                                        <TextView style={[styles.center, styles.horizontalSpace]}>Humidity</TextView>
+                                        <TextView bold style={[styles.center, styles.horizontalSpace]}>{`${data.main.humidity} %`}</TextView>
+                                    </View>
+                                </View>
+                            </View>
+                            <View style={[styles.center]}>
+                                <View style={[styles.center, styles.halfCell, styles.borderLeft]}>
+                                    <View style={styles.column}>
+                                        <TextView style={[styles.center, styles.horizontalSpace]}>Sunrise</TextView>
+                                        <TextView bold style={[styles.center, styles.horizontalSpace]}>
+                                            {convertWeatherSunTime(data.sys.sunrise)}
+                                        </TextView>
+                                    </View>
+                                </View>
+                                <View style={[styles.center, styles.halfCell]}>
+                                    <View style={styles.column}>
+                                        <TextView style={[styles.center, styles.horizontalSpace]}>Sunset</TextView>
+                                        <TextView bold style={[styles.center, styles.horizontalSpace]}>
+                                            {convertWeatherSunTime(data.sys.sunset)}
+                                        </TextView>
+                                    </View>
+                                </View>
+                            </View>
+                        </View>
+                    </>
+                )}
+            </>
         </ScreenContent>
     );
 }
 
 const styles = StyleSheet.create({
-    root: {
-        flex: 1,
+    paragraph: {
+        paddingBottom: SPACE.LARGE,
+    },
+    center: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        textAlign: 'center',
+    },
+    column: {
+        flexDirection: 'column',
+        justifyContent: 'center',
+        padding: SPACE.SMALL,
+    },
+    horizontalSpace: {
+        paddingLeft: SPACE.EXTRA_SMALL,
+        paddingRight: SPACE.EXTRA_SMALL,
+    },
+    halfCell: {
+        width: '50%',
+    },
+    bordeBottom: {
+        borderBottomWidth: 1,
+        borderColor: COLOR.BORDER,
+    },
+    borderLeft: {
+        borderRightWidth: 1,
+        borderColor: COLOR.BORDER,
     },
 });
