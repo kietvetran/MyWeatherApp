@@ -4,7 +4,7 @@ export default function HomeScreen({navigation}) {
     return (
         <View style={styles.root}>
           <Text>Home Screen</Text>
-          <Button title="Go to Profile" onPress={() =>navigation.navigate('LocationScreen', { title: 'Custom profile header' })}/>
+          <Button title="Go to Profile" onPress={() =>navigation.navigate('LocationScreen', { title: 'Location' })}/>
         </View>
     );
 };

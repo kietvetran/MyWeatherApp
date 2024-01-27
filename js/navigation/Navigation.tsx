@@ -37,7 +37,7 @@ export default function Navigation() {
         <NavigationContainer theme={MyTheme}>
             <Stack.Navigator>
                 <Stack.Screen name="HomeScreen" component={HomeScreen} options={{...MyStackOption, title: 'Home'}}/>
-                <Stack.Screen name="LocationScreen" component={LocationScreen} options={({ route }) => ({...MyStackOption, title: route.params.title })} />
+                <Stack.Screen name="LocationScreen" component={LocationScreen} options={({ route }) => ({...MyStackOption, ...route.params })} />
             </Stack.Navigator>
         </NavigationContainer>
     );
