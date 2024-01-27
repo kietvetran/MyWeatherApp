@@ -13,7 +13,7 @@ interface Props {
 }
 
 export default function LocationScreen({ route }: Props) {
-    const { city } = route.params;
+    const { city, tempUnit } = route.params;
     const { isLoading, isError, data } = useFetchWeather(city);
 
     return (
@@ -28,13 +28,19 @@ export default function LocationScreen({ route }: Props) {
                                 {capitalize(data.weather[0].description)}
                             </TextView>
                             <TextView semibold size={FONT_SIZE.XLARGEST} style={styles.center}>
-                                {`${convertWeatherTempKelvin(data.main.temp)}`}
+                                {`${convertWeatherTempKelvin(data.main.temp, tempUnit)}`}
                             </TextView>
                             <View style={styles.center}>
                                 <TextView
-                                    style={[styles.center, styles.horizontalSpace]}>{`H: ${convertWeatherTempKelvin(data.main.temp_max)}`}</TextView>
+                                    style={[
+                                        styles.center,
+                                        styles.horizontalSpace,
+                                    ]}>{`H: ${convertWeatherTempKelvin(data.main.temp_max, tempUnit)}`}</TextView>
                                 <TextView
-                                    style={[styles.center, styles.horizontalSpace]}>{`L: ${convertWeatherTempKelvin(data.main.temp_min)}`}</TextView>
+                                    style={[
+                                        styles.center,
+                                        styles.horizontalSpace,
+                                    ]}>{`L: ${convertWeatherTempKelvin(data.main.temp_min, tempUnit)}`}</TextView>
                             </View>
                         </View>
                         <View style={styles.paragraph}>
