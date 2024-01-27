@@ -1,19 +1,7 @@
-import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import Navigation from 'js/navigation/Navigation';
 
-const App: React.FC = (): JSX.Element => {
-
-    return <View style={styles.root}>
-        <Text>Hello world</Text>
-    </View>
+export default function App() {
+    return (
+        <Navigation />
+    );
 };
-
-const styles = StyleSheet.create({
-    root: {
-        marginTop: 90,
-        borderWidth: 1,
-        borderColor: 'red',
-    }
-});
-
-export default App;
