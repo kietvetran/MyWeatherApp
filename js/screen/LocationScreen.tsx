@@ -1,16 +1,14 @@
-import { RouteProp, ParamListBase } from '@react-navigation/native';
 import ScreenContent from 'js/component/ScreenContent';
 import TextView, { FONT_SIZE } from 'js/component/TextView';
 import useFetchWeather from 'js/hook/useFetchWeather';
+import { RootStackScreenProps } from 'js/navigation/RootStackParamList';
 import { SPACE, COLOR } from 'js/style';
 import capitalize from 'js/util/capitalize';
 import convertWeatherSunTime from 'js/util/convertWeatherSunTime';
 import convertWeatherTempKelvin from 'js/util/convertWeatherTempKelvin';
 import { StyleSheet, View } from 'react-native';
 
-interface Props {
-    route: RouteProp<ParamListBase, string>;
-}
+type Props = RootStackScreenProps<'LocationScreen'>;
 
 export default function LocationScreen({ route }: Props) {
     const { city, tempUnit } = route.params;

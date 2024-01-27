@@ -1,10 +1,11 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { RootStackParamList } from 'js/navigation/RootStackParamList';
 import HomeScreen from 'js/screen/HomeScreen';
 import LocationScreen from 'js/screen/LocationScreen';
 import { COLOR } from 'js/style';
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const MyStackOption = {
     headerTintColor: COLOR.FONT,

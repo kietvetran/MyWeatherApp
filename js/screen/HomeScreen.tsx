@@ -68,8 +68,8 @@ export default function HomeScreen() {
                     currentCityList.unshift(ownSelectedCity);
                 }
                 const unit = tempUnit ? (tempUnit as TempUnit) : TemptType.CELSIUA;
-                return {...s, currentCityList, tempUnit: unit};
-           });
+                return { ...s, currentCityList, tempUnit: unit };
+            });
         };
 
         render();
